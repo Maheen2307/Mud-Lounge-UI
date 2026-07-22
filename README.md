@@ -61,10 +61,12 @@ mud-lounge-ui/
 ├── app.js              # Interactivity, filters, observers & API handling
 └── assets/             # Media, images, and hero video files
 
-Quick Start
+---
+
+## Quick Start
 
 1. Clone the repository:
-git clone [https://github.com/your-username/mud-lounge-ui.git](https://github.com/your-username/mud-lounge-ui.git)
+git clone [https://github.com/maheen2307/mud-lounge-ui.git](https://github.com/maheen2307/mud-lounge-ui.git)
 cd mud-lounge-ui
 2. Run locally:
 ​Open index.html directly in any web browser, or
