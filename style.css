@@ -1,0 +1,1403 @@
+/* ==========================================================================
+   1. COLOR PALETTE & GLOBAL VARIABLES
+   ========================================================================== */
+:root {
+    --terracotta-clay: #b85c38;
+    --warm-earth: #473325;
+    --soft-sand: #fbf8f3;
+    --biscuit-cream: #f4eee1;
+    --pure-white: #ffffff;
+    --dark-charcoal: #212121;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --artisan-accent: #2c1a1a;
+    --artisan-soft: #fcf6e5;
+}
+
+/* ==========================================================================
+   2. GLOBAL RESETS & BASE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--soft-sand);
+    color: var(--dark-charcoal);
+    overflow-x: hidden;
+    padding-top: 75px;
+    width: 100%;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    padding: 60px 4%;
+    scroll-margin-top: 75px;
+    overflow: hidden;
+}
+
+.section-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    color: var(--warm-earth);
+    margin-bottom: 6px;
+}
+
+.section-subtitle {
+    font-size: clamp(0.9rem, 1.5vw, 1.02rem);
+    color: #615a55;
+    letter-spacing: 0.3px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   3. KEYFRAMES & MICRO-ANIMATIONS
+   ========================================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes typingReveal {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+        border-right-color: transparent;
+    }
+}
+
+@keyframes blinkCursor {
+    from {
+        border-right-color: var(--terracotta-clay);
+    }
+    to {
+        border-right-color: transparent;
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.9s ease forwards;
+}
+
+.animate-slide-up {
+    animation: fadeInUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   4. NAVIGATION BAR
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 5%;
+    background-color: var(--pure-white);
+    border-bottom: 2px solid var(--biscuit-cream);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--warm-earth);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+body.nav-open {
+    overflow: hidden;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+    font-weight: 800;
+    color: var(--warm-earth);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    margin-left: auto;
+}
+
+.nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: var(--dark-charcoal);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--terracotta-clay);
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--terracotta-clay);
+}
+
+/* ==========================================================================
+   5. HERO SECTION
+   ========================================================================== */
+.hero-section {
+    height: calc(100vh - 75px);
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    scroll-margin-top: 0;
+}
+
+.bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 35, 29, 0.45);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--pure-white);
+    padding: 0 20px;
+    max-width: 800px;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    margin-bottom: 12px;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-style: italic;
+    margin-bottom: 30px;
+    opacity: 0.95;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.claim-btn {
+    display: inline-block;
+    background-color: var(--terracotta-clay);
+    color: var(--pure-white);
+    border: none;
+    padding: 12px 32px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(184, 92, 56, 0.3);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.claim-btn:hover {
+    background-color: #964727;
+    transform: translateY(-2px);
+}
+
+.claim-btn:active {
+    transform: scale(0.96) translateY(1px);
+    box-shadow: 0 2px 8px rgba(184, 92, 56, 0.1);
+}
+
+/* ==========================================================================
+   6. WORKSHOPS SECTION
+   ========================================================================== */
+.workshops-section {
+    background-color: var(--biscuit-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.filter-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--warm-earth);
+    background-color: var(--pure-white);
+    border: 1px solid rgba(71, 51, 37, 0.15);
+    padding: 8px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.filter-btn:hover {
+    background-color: #fbf0e8;
+    border-color: var(--terracotta-clay);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(184, 92, 56, 0.08);
+}
+
+.filter-btn.active {
+    background-color: var(--terracotta-clay);
+    color: var(--pure-white);
+    border-color: var(--terracotta-clay);
+    box-shadow: 0 6px 15px rgba(184, 92, 56, 0.2);
+}
+
+.workshops-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 100%;
+}
+
+.workshop-card {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.card-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.1 / 1;
+    overflow: hidden;
+    border-radius: 55% 45% 42% 58% / 60% 50% 50% 40%;
+    box-shadow: 0 12px 30px rgba(71, 51, 37, 0.06);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.workshop-card:hover .card-image-container {
+    transform: translateY(-6px);
+    border-radius: 45% 55% 52% 48% / 50% 60% 40% 50%;
+    box-shadow: 0 20px 35px rgba(184, 92, 56, 0.12);
+}
+
+.card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.hover-img {
+    opacity: 0;
+}
+
+.workshop-card:hover .primary-img {
+    opacity: 0;
+    transform: scale(1.04);
+}
+
+.workshop-card:hover .hover-img {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.card-text-content {
+    padding: 14px 10px 5px 10px;
+}
+
+.card-text-content h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--warm-earth);
+    margin-bottom: 6px;
+}
+
+.workshop-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   7. OUR ARTISANS SECTION
+   ========================================================================== */
+.artisans-section {
+    background-color: var(--artisan-accent);
+    color: var(--artisan-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.artisans-section .section-header h2 {
+    color: var(--artisan-soft);
+}
+
+.artisans-section .section-subtitle {
+    color: rgba(252, 246, 229, 0.7);
+}
+
+.artisans-container {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+.artisan-card {
+    background: #fbf8f3;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 12px;
+    transition: box-shadow 0.3s ease;
+}
+
+.artisan-img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.25 / 1;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.artisan-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.artisan-img-wrapper:hover .artisan-photo {
+    transform: scale(1.08);
+}
+
+.artisan-info {
+    padding: 12px 4px 4px 4px;
+    text-align: center;
+}
+
+.artisan-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--warm-earth);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.artisan-title {
+    color: var(--terracotta-clay);
+    font-weight: 600;
+    font-size: 0.72rem;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.artisan-bio {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #555;
+}
+
+/* ==========================================================================
+   8. PHILOSOPHY SECTION
+   ========================================================================== */
+.philosophy-section {
+    background-color: var(--biscuit-cream);
+    color: var(--dark-charcoal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.philosophy-top-header {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.philosophy-tag {
+    display: inline-block;
+    color: var(--terracotta-clay);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.philosophy-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.philosophy-title-block {
+    flex: 1;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.typing-container {
+    overflow: hidden;
+    width: 0;
+    white-space: nowrap;
+    border-right: 3px solid var(--terracotta-clay);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.philosophy-title-block h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--warm-earth);
+    margin: 0;
+}
+
+.philosophy-section.is-active .typing-container {
+    opacity: 1;
+    animation: typingReveal 1.8s steps(25, end) forwards, blinkCursor 0.8s step-end infinite alternate;
+}
+
+.philosophy-overlapping-gallery {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+}
+
+.philosophy-overlapping-gallery .mini-img-box {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    background-color: #e8dfd3;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    border: 3px solid var(--pure-white);
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.8s ease-in-out;
+}
+
+.mini-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.philosophy-section.is-active .mini-img-box {
+    opacity: 1;
+}
+
+.philosophy-section.is-active .img-left {
+    transform: translateX(-140px) translateY(-10px) rotate(-12deg) scale(0.95);
+    z-index: 2;
+}
+
+.philosophy-section.is-active .img-center {
+    transform: translateX(-50%) translateY(10px) scale(1.05);
+    z-index: 4;
+}
+
+.philosophy-section.is-active .img-right {
+    transform: translateX(20px) translateY(-10px) rotate(12deg) scale(0.95);
+    z-index: 3;
+}
+
+.philosophy-content-block {
+    flex: 1.2;
+    max-width: 520px;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 1.2s ease 0.2s, transform 1.2s ease 0.2s;
+}
+
+.philosophy-section.is-active .philosophy-content-block {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.philosophy-lead {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: var(--warm-earth);
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.philosophy-subtext {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.philosophy-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.p-badge {
+    background-color: var(--pure-white);
+    color: var(--warm-earth);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 1px solid rgba(71, 51, 37, 0.12);
+}
+
+/* ==========================================================================
+   9. ARTISAN SHOWCASE SECTION
+   ========================================================================== */
+.showcase-section {
+    background-color: var(--artisan-accent);
+    padding: 60px 4%;
+    width: 100%;
+}
+
+.showcase-section .section-header h2 {
+    color: var(--artisan-soft);
+}
+
+.showcase-section .section-subtitle {
+    color: rgba(252, 246, 229, 0.7);
+}
+
+.showcase-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto 0 auto;
+}
+
+.showcase-card {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    transition: transform 0.4s ease;
+}
+
+.showcase-card:hover {
+    transform: translateY(-6px);
+}
+
+.showcase-visual-box {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+}
+
+.circle-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.9) rotate(-15deg);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+    border: 4px solid rgba(252, 246, 229, 0.2);
+}
+
+.circle-frame.active {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    z-index: 2;
+    border-color: var(--terracotta-clay);
+}
+
+.circle-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collection-tag {
+    color: var(--terracotta-clay);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.showcase-details h3 {
+    font-family: var(--font-heading);
+    color: var(--artisan-soft);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.showcase-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba(252, 246, 229, 0.85);
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.showcase-meta span {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background-color: rgba(252, 246, 229, 0.1);
+    color: var(--artisan-soft);
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(252, 246, 229, 0.15);
+}
+
+/* ==========================================================================
+   10. FAQS SECTION (ACCORDION)
+   ========================================================================== */
+.faqs-section {
+    background-color: var(--soft-sand);
+    padding: 60px 4%;
+    width: 100%;
+}
+
+.faqs-inner-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faqs-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.faq-item {
+    background-color: var(--biscuit-cream);
+    border: 1px solid rgba(113, 92, 77, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.faq-question h4 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--warm-earth);
+    text-transform: lowercase;
+    margin: 0;
+}
+
+.faq-arrow {
+    font-size: 0.75rem;
+    color: var(--warm-earth);
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer-content {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(113, 92, 77, 0.05);
+}
+
+.faq-answer p {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--dark-charcoal);
+    font-style: italic;
+    margin: 0;
+}
+
+.faq-item.active-toggle {
+    background-color: var(--pure-white);
+    box-shadow: 0 4px 20px rgba(113, 92, 77, 0.05);
+}
+
+.faq-item.active-toggle .faq-answer {
+    max-height: 200px;
+}
+
+.faq-item.active-toggle .faq-arrow {
+    transform: rotate(90deg);
+    color: var(--terracotta-clay);
+}
+
+/* ==========================================================================
+   11. REVIEWS SECTION
+   ========================================================================== */
+.reviews-section-clean {
+    background-color: var(--artisan-accent);
+    text-align: center;
+    padding: 50px 0 35px 0;
+}
+
+.reviews-header {
+    margin-bottom: 20px;
+}
+
+.reviews-header h2 {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    color: var(--artisan-soft);
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+.reviews-header p {
+    text-align: center;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: rgba(252, 246, 229, 0.7);
+    margin-top: 0;
+}
+
+.reviews-marquee-strip {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.04);
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(252, 246, 229, 0.05);
+    border-bottom: 1px solid rgba(252, 246, 229, 0.05);
+}
+
+.marquee-content {
+    display: flex;
+    gap: 40px;
+    white-space: nowrap;
+    animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+.review-card {
+    display: inline-block;
+    color: var(--artisan-soft);
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.review-card span {
+    color: var(--terracotta-clay);
+    font-weight: 600;
+    margin-left: 8px;
+    font-style: normal;
+}
+
+/* ==========================================================================
+   12. REGISTRATION FORM SECTION
+   ========================================================================== */
+.registration-section {
+    background-color: #f7f4ef;
+    display: flex;
+    justify-content: center;
+    padding: 60px 4%;
+}
+
+.registration-container {
+    width: 100%;
+    max-width: 800px;
+    background: #ffffff;
+    padding: 35px 5%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.registration-header-centered {
+    margin-bottom: 22px;
+}
+
+.registration-header-centered h2 {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 2.8vw, 2rem);
+    color: var(--dark-charcoal);
+    margin-bottom: 4px;
+}
+
+.registration-header-centered .registration-subtitle {
+    text-align: center;
+    display: block;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #555555;
+    margin-top: 0;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #4a3b32;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 44px;
+    padding: 8px 12px;
+    border: 1px solid #dcd6cd;
+    background-color: #fff;
+    font-size: 0.92rem;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #c48c6d;
+}
+
+.submit-booking-btn {
+    width: 100%;
+    height: 46px;
+    background-color: #c48c6d;
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s ease;
+}
+
+.submit-booking-btn:hover {
+    background-color: #a36d4f;
+}
+
+/* ==========================================================================
+   13. FOOTER
+   ========================================================================== */
+.studio-footer-premium {
+    background-color: #1a1512;
+    padding: 50px 5% 25px 5%;
+    color: #fcf6e5;
+}
+
+.footer-grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(252, 246, 229, 0.1);
+}
+
+.footer-brand-column {
+    max-width: 300px;
+}
+
+.footer-logo {
+    font-size: 1.6rem;
+    margin: 0 0 8px 0;
+    color: #fff;
+}
+
+.footer-logo span {
+    color: #c48c6d;
+}
+
+.footer-manifesto {
+    font-size: 0.85rem;
+    color: rgba(252, 246, 229, 0.6);
+    line-height: 1.5;
+}
+
+.footer-nav-grid {
+    display: flex;
+    gap: 40px;
+}
+
+.footer-info-group h4 {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: #c48c6d;
+    letter-spacing: 1px;
+    margin: 0 0 12px 0;
+}
+
+.footer-info-group p {
+    font-size: 0.85rem;
+    color: rgba(252, 246, 229, 0.8);
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+}
+
+.footer-info-group a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-info-group a:hover {
+    color: #c48c6d;
+}
+
+.closed-day {
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.footer-bottom-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: rgba(252, 246, 229, 0.4);
+}
+
+.footer-legal-links a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   14. RESPONSIVE BREAKPOINTS (LAPTOP, TABLET, MOBILE)
+   ========================================================================== */
+
+/* --- LAPTOPS & SMALL DESKTOPS (1025px – 1200px) --- */
+@media (max-width: 1200px) {
+    .workshops-container,
+    .artisans-container,
+    .showcase-container {
+        gap: 18px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+}
+
+/* --- TABLETS & MEDIUM SCREENS (769px – 1024px) --- */
+@media (max-width: 1024px) {
+    .workshops-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .artisans-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .showcase-container {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        gap: 35px;
+    }
+
+    .philosophy-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .philosophy-title-block,
+    .philosophy-content-block {
+        max-width: 100%;
+        align-items: center;
+    }
+
+    .philosophy-overlapping-gallery {
+        height: auto;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .philosophy-overlapping-gallery .mini-img-box {
+        position: relative;
+        left: auto;
+        width: 110px;
+        height: 110px;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    .typing-container {
+        white-space: normal;
+        width: 100% !important;
+        border-right: none;
+        opacity: 1;
+    }
+
+    .philosophy-badges {
+        justify-content: center;
+    }
+}
+
+/* --- MOBILE & SMALL TABLETS (≤ 768px) --- */
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+
+    section {
+        padding: 45px 5%;
+        scroll-margin-top: 70px;
+    }
+
+    .navbar {
+        padding: 14px 5%;
+    }
+
+    .nav-toggle {
+        display: flex;
+        z-index: 1002;
+    }
+
+    .nav-links {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        background-color: rgba(255, 255, 255, 0.98);
+        transform: translateX(100%);
+        transition: transform 0.35s ease-in-out;
+        z-index: 1001;
+        pointer-events: none;
+    }
+
+    .nav-links.open {
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+    }
+
+    .hero-section {
+        height: calc(100dvh - 70px);
+    }
+
+    .workshops-container,
+    .artisans-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .footer-grid-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-nav-grid {
+        width: 100%;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column-reverse;
+        gap: 12px;
+        text-align: center;
+    }
+}
+
+/* --- SMALL PHONES (≤ 480px) --- */
+@media (max-width: 480px) {
+    .philosophy-overlapping-gallery .mini-img-box {
+        width: 85px;
+        height: 85px;
+    }
+
+    .filter-wrapper {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   MOBILE VIEW: Preserve Laptop Side-by-Side Layout (Horizontal Scroll)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Sections ki natural height taake stretch na ho */
+    section, .hero-section {
+        height: auto !important;
+        min-height: auto !important;
+        padding: 40px 4% !important;
+    }
+
+    .hero-section {
+        height: calc(100vh - 70px) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Containers ko horizontal row mein lock karna (Laptop ki tarah) */
+    .workshops-container,
+    .artisans-container,
+    .showcase-container {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 16px !important;
+        width: 100% !important;
+        padding-bottom: 15px !important;
+        justify-content: flex-start !important;
+    }
+
+    /* Scrollbar ko clean aur subtle banana */
+    .workshops-container::-webkit-scrollbar,
+    .artisans-container::-webkit-scrollbar,
+    .showcase-container::-webkit-scrollbar {
+        height: 4px;
+    }
+    .workshops-container::-webkit-scrollbar-thumb,
+    .artisans-container::-webkit-scrollbar-thumb,
+    .showcase-container::-webkit-scrollbar-thumb {
+        background-color: var(--terracotta-clay);
+        border-radius: 4px;
+    }
+
+    /* Cards ki fixed width dena taake wo mobile par bhi poore laptop style mein barabar dikhein */
+    .workshop-card,
+    .artisan-card,
+    .showcase-card {
+        min-width: 260px !important;
+        max-width: 280px !important;
+        flex: 0 0 auto !important;
+        scroll-snap-align: start;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem !important;
+    }
+}

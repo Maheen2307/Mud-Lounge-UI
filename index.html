@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Mud Lounge | Premium Pottery Studio</title>
+
+    <!-- PREVENT HASH AUTO-SCROLL BEFORE PAGE RENDERS -->
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        if (window.location.hash) {
+            history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+        window.scrollTo(0, 0);
+    </script>
+
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#home" class="logo">The Mud Lounge</a>
+        <button type="button" class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#philosophy" class="scroll-link">Philosophy</a></li>
+            <li><a href="#workshops" class="scroll-link">Workshops</a></li>
+            <li><a href="#artisans" class="scroll-link">Our Artisans</a></li>
+            <li><a href="#showcase" class="scroll-link">Showcase</a></li>
+            <li><a href="#faqs" class="scroll-link">FAQs</a></li>
+            <li><a href="#reviews" class="scroll-link">Reviews</a></li>
+        </ul>
+    </nav>
+
+    <!-- DYNAMIC HERO SECTION -->
+    <section class="hero-section" id="home">
+        <video autoplay muted loop playsinline class="bg-video" poster="https://images.unsplash.com/photo-1595179997431-2ff213d5859b?auto=format&fit=crop&w=1500&q=80">
+            <source src="DL-pottery.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Earth in Motion, Soul at Rest</h1>
+            <p class="hero-subtitle">"The clay asks for nothing but your presence."</p>
+            <a href="#booking-form-section" class="claim-btn">Claim a Wheel</a>
+        </div>
+    </section>
+
+    <!-- WORKSHOPS SECTION -->
+    <section id="workshops" class="workshops-section animate-fade-in">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <h2>Our Workshops</h2>
+                <p class="section-subtitle">Discover the therapeutic art of molding clay</p>
+            </div>
+
+            <div class="filter-wrapper animate-slide-up">
+                <button class="filter-btn active" data-level="all">All Sessions</button>
+                <button class="filter-btn" data-level="beginner">Beginner Friendly</button>
+                <button class="filter-btn" data-level="creative">Creative Space</button>
+            </div>
+
+            <div class="workshops-container">
+                <article class="workshop-card scroll-reveal" data-level="beginner">
+                    <div class="card-image-container">
+                        <img src="wheel-throwing.jpeg" alt="Pottery Wheel Session" class="card-img primary-img" />
+                        <img src="wt-2.jpeg" alt="Pottery Wheel Close-up" class="card-img hover-img" />
+                    </div>
+                    <div class="card-text-content">
+                        <h3>Wheel Throwing</h3>
+                        <p class="workshop-desc">Master the core basics of centering clay, opening, and pulling shapes on the pottery wheel.</p>
+                    </div>
+                </article>
+
+                <article class="workshop-card scroll-reveal" data-level="creative">
+                    <div class="card-image-container">
+                        <img src="hb-2.jpeg" alt="Handbuilding Studio" class="card-img primary-img" />
+                        <img src="hand-building.jpeg" alt="Finished Ceramic Plate" class="card-img hover-img" />
+                    </div>
+                    <div class="card-text-content">
+                        <h3>Handbuilding</h3>
+                        <p class="workshop-desc">Create organic structures, pinch pots, and unique slab designs using manual molding techniques.</p>
+                    </div>
+                </article>
+
+                <article class="workshop-card scroll-reveal" data-level="creative">
+                    <div class="card-image-container">
+                        <img src="glazing.jpeg" alt="Glazing Pottery" class="card-img primary-img" />
+                        <img src="firing.jpeg" alt="Glazed Ceramics in Kiln" class="card-img hover-img" />
+                    </div>
+                    <div class="card-text-content">
+                        <h3>Glazing &amp; Firing</h3>
+                        <p class="workshop-desc">Explore professional chemical glaze combinations and the raw magic of kiln-firing alchemy.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR ARTISANS SECTION -->
+    <section id="artisans" class="artisans-section animate-fade-in">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <h2>Our Artisans</h2>
+                <p class="section-subtitle">Meet the masters guiding your creative journey</p>
+            </div>
+
+            <div class="artisans-container">
+                <div class="artisan-card scroll-reveal">
+                    <div class="artisan-img-wrapper">
+                        <img src="omar.jpeg" alt="Artisan 1" class="artisan-photo" />
+                        <div class="artisan-overlay"></div>
+                    </div>
+                    <div class="artisan-info">
+                        <h3>Omar Bashir</h3>
+                        <p class="artisan-title">Wheel Throwing Specialist</p>
+                        <p class="artisan-bio">Omar brings over 15 years of mastery to the wheel, guiding students to center both the clay and themselves.</p>
+                    </div>
+                </div>
+
+                <div class="artisan-card scroll-reveal">
+                    <div class="artisan-img-wrapper">
+                        <img src="layla.jpeg" alt="Artisan 2" class="artisan-photo" />
+                        <div class="artisan-overlay"></div>
+                    </div>
+                    <div class="artisan-info">
+                        <h3>Layla Khan</h3>
+                        <p class="artisan-title">Handbuilding &amp; Sculpting Master</p>
+                        <p class="artisan-bio">Layla believes the rawest creativity is found in manual molding. Her workshops transform simple coils and slabs into living art.</p>
+                    </div>
+                </div>
+
+                <div class="artisan-card scroll-reveal">
+                    <div class="artisan-img-wrapper">
+                        <img src="zain.jpeg" alt="Artisan 3" class="artisan-photo" />
+                        <div class="artisan-overlay"></div>
+                    </div>
+                    <div class="artisan-info">
+                        <h3>Zain Malik</h3>
+                        <p class="artisan-title">Kiln &amp; Glazing Alchemy Lead</p>
+                        <p class="artisan-bio">Zain teaches the magic that happens in the fire. He is a technical expert in chemical glazes and kiln optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION -->
+    <section id="philosophy" class="philosophy-section">
+        <div class="philosophy-top-header">
+            <span class="philosophy-tag">Our Core Belief</span>
+        </div>
+        <div class="section-wrapper philosophy-inner">
+            <div class="philosophy-title-block">
+                <div class="philosophy-overlapping-gallery">
+                    <div class="mini-img-box img-left">
+                        <img src="Art.JPG" alt="Pottery Crafting" />
+                    </div>
+                    <div class="mini-img-box img-center">
+                        <img src="hand.JPG" alt="Clay Texture" />
+                    </div>
+                    <div class="mini-img-box img-right">
+                        <img src="craft.JPG" alt="Artisan Hands" />
+                    </div>
+                </div>
+                <div class="typing-container">
+                    <h2 class="typing-text">Shaping Clay,<br />Preserving Stories.</h2>
+                </div>
+            </div>
+            <div class="philosophy-content-block">
+                <p class="philosophy-lead">
+                    At The Mud Lounge, we believe that clay is not just a raw material, but a profound medium to connect deeply with the earth and express human essence. Every vessel shaped and every workshop hosted weaves a completely unique story.
+                </p>
+                <p class="philosophy-subtext">
+                    We bridge ancient heritage and timeless traditions with modern, minimalist design aesthetics. Our artisans passionately shape every single particle of clay by hand, ensuring that what reaches your home isn't just a lifestyle product, but a tangible sense of pure tranquility.
+                </p>
+                <div class="philosophy-badges">
+                    <span class="p-badge">100% Organic Clay</span>
+                    <span class="p-badge">Handcrafted with Love</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTISAN SHOWCASE -->
+    <section id="showcase" class="showcase-section animate-fade-in">
+        <div class="section-wrapper">
+            <div class="section-header">
+                <h2>The Artisan's Showcase</h2>
+                <p class="section-subtitle">Live gallery of functional art molded right here in the lounge</p>
+            </div>
+            <div class="showcase-container">
+                <div class="showcase-card scroll-reveal">
+                    <div class="showcase-visual-box">
+                        <div class="circle-frame active"><img src="ms.jpeg" alt="Omar's Glazed Vase" /></div>
+                        <div class="circle-frame"><img src="ms-2.jpeg" alt="Omar's Stoneware Bowl" /></div>
+                        <div class="circle-frame"><img src="ms-3.jpeg" alt="Omar's Ceramic Masterpiece" /></div>
+                    </div>
+                    <div class="showcase-details">
+                        <span class="collection-tag">Omar's Wheel Works</span>
+                        <h3>Minimalist Stoneware</h3>
+                        <p class="showcase-desc">Timeless throwing forms characterized by raw exterior textures and safe, microwave-friendly chemical inside glazes.</p>
+                        <div class="showcase-meta"><span>Material: 100% Terracotta Clay</span></div>
+                    </div>
+                </div>
+
+                <div class="showcase-card scroll-reveal">
+                    <div class="showcase-visual-box">
+                        <div class="circle-frame active"><img src="otv.jpeg" alt="Layla's Sculpture" /></div>
+                        <div class="circle-frame"><img src="otv-2.jpeg" alt="Layla's Coil Pot" /></div>
+                        <div class="circle-frame"><img src="otv-3.jpeg" alt="Layla's Detailed Texture Work" /></div>
+                    </div>
+                    <div class="showcase-details">
+                        <span class="collection-tag">Layla's Handbuilds</span>
+                        <h3>Organic Textured Vases</h3>
+                        <p class="showcase-desc">Asymmetrical pinch structures that capture human fingerprints, converting simple home utility items into living art pieces.</p>
+                        <div class="showcase-meta"><span>Material: Earthy Grogged Stoneware</span></div>
+                    </div>
+                </div>
+
+                <div class="showcase-card scroll-reveal">
+                    <div class="showcase-visual-box">
+                        <div class="circle-frame active"><img src="cgs.jpeg" alt="Zain's Crystalline Dish" /></div>
+                        <div class="circle-frame"><img src="cgs-2.jpeg" alt="Zain's Reduction Finish" /></div>
+                        <div class="circle-frame"><img src="cgs-3.jpeg" alt="Zain's Glaze Kiln Magic" /></div>
+                    </div>
+                    <div class="showcase-details">
+                        <span class="collection-tag">Zain's Alchemy</span>
+                        <h3>Crystalline Glaze Series</h3>
+                        <p class="showcase-desc">Stunning mineral formations captured mid-melt inside a heavy reduction high-fire kiln atmosphere.</p>
+                        <div class="showcase-meta"><span>Material: Fine Porcelain Base</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQS SECTION -->
+    <section id="faqs" class="faqs-section animate-fade-in">
+        <div class="faqs-inner-wrapper">
+            <div class="section-header">
+                <h2>Curiosities in Clay</h2>
+                <p class="section-subtitle">Everything you need to know before stepping into the studio</p>
+            </div>
+            <div class="faqs-wrapper">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>do i need prior experience for the workshops?</h4>
+                        <span class="faq-arrow">❯</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>not at all! our foundation workshops are specially curated for absolute beginners. our expert artisans will guide you step-by-step through the entire process.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>what should i wear to a pottery session?</h4>
+                        <span class="faq-arrow">❯</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>we recommend wearing comfortable clothes that you don't mind getting a little muddy. short nails are also highly recommended for a better grip on the wheel!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>is all material included in the workshop fee?</h4>
+                        <span class="faq-arrow">❯</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>yes, the package covers everything including raw clay, premium glazes, wheel access, firing tools, and light refreshments during the break.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>when can i take my finished pottery pieces home?</h4>
+                        <span class="faq-arrow">❯</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>pottery requires air drying, bisque firing, glazing, and a final kiln glaze firing. your masterpieces will be ready for pickup exactly 2 to 3 weeks after your session.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>can i reschedule or cancel my workshop slot?</h4>
+                        <span class="faq-arrow">❯</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>yes, you can easily reschedule up to 48 hours before your class through your confirmation link so we can adjust our fresh daily clay prep batches accordingly.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>do you offer private group events or studio rentals?</h4>
+                        <span class="faq-arrow">❯</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>absolutely! we host custom team buildings, birthday getaways, and private couples' sessions. experienced clay artists can also apply for our monthly open-studio passes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="reviews-section-clean">
+        <div class="reviews-header">
+            <h2>Tales From The Wheel</h2>
+            <p>Real stories molded by our community at the lounge.</p>
+        </div>
+        <div class="reviews-marquee-strip">
+            <div class="marquee-content">
+                <div class="review-card"><p>"Learning under Omar's 15-year expertise is an honor." <span>&mdash; Khadija B.</span></p></div>
+                <div class="review-card"><p>"Centering the clay helped me center my chaotic thoughts." <span>&mdash; Zainab M.</span></p></div>
+                <div class="review-card"><p>"The studio atmosphere is pure bliss. Highly recommended!" <span>&mdash; Ahmed K.</span></p></div>
+                <div class="review-card"><p>"Loved the Sunset Session! Watching the clay mold is magical." <span>&mdash; Sana T.</span></p></div>
+                <div class="review-card"><p>"Best pottery studio in Lahore. Very therapeutic." <span>&mdash; Bilal W.</span></p></div>
+                <div class="review-card"><p>"The trainers are incredibly patient with absolute beginners." <span>&mdash; Mariam J.</span></p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTRATION FORM SECTION -->
+    <section id="booking-form-section" class="registration-section">
+        <div class="registration-container">
+            <div class="registration-header-centered">
+                <h2>Claim Your Wheel</h2>
+                <p class="registration-subtitle">Reserve your spot at the lounge. Spaces are prepped daily.</p>
+            </div>
+
+            <form class="booking-form" id="studioBookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" required placeholder="e.g., Ayesha Khan" />
+                    </div>
+                    <div class="form-group">
+                        <label for="emailAddress">Email Address</label>
+                        <input type="email" id="emailAddress" required placeholder="you@example.com" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactNo">Contact Number</label>
+                        <input type="tel" id="contactNo" required placeholder="+92 300 1234567" />
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionCategory">Select Experience</label>
+                        <select id="sessionCategory" required>
+                            <option value="" disabled selected>Choose your session...</option>
+                            <option value="beginner">Wheel Throwing (Beginner Friendly)</option>
+                            <option value="creative">Handbuilding (Creative Space)</option>
+                            <option value="alchemy">Glazing &amp; Firing (Alchemy Lead)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date</label>
+                        <input type="date" id="preferredDate" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="timeSlot">Preferred Timing Slot</label>
+                        <select id="timeSlot" required>
+                            <option value="" disabled selected>Select slot timing...</option>
+                            <option value="morning">Morning (10:00 AM - 01:00 PM)</option>
+                            <option value="afternoon">Afternoon (02:00 PM - 05:00 PM)</option>
+                            <option value="evening">Sunset Session (06:00 PM - 09:00 PM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-booking-btn">Confirm Reservation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="studio-footer-premium">
+        <div class="footer-grid-container">
+            <div class="footer-brand-column">
+                <h3 class="footer-logo">The Mud Lounge<span>.</span></h3>
+                <p class="footer-manifesto">A sanctuary for raw clay and conscious creation.</p>
+            </div>
+            <div class="footer-nav-grid">
+                <div class="footer-info-group">
+                    <h4>The Hours</h4>
+                    <p>Mon &mdash; Sat: 10:00 AM &ndash; 09:00 PM</p>
+                    <p class="closed-day">Sundays: Studio Closed</p>
+                </div>
+                <div class="footer-info-group">
+                    <h4>The Space</h4>
+                    <p>Studio 4B, Heritage Lofts</p>
+                    <p>Gulberg III, Lahore</p>
+                </div>
+                <div class="footer-info-group">
+                    <h4>Connect</h4>
+                    <p><a href="mailto:hello@themudlounge.com">hello@themudlounge.com</a></p>
+                    <div class="footer-mini-socials">
+                        <a href="#">Instagram</a> &middot; <a href="#">Journal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <p>&copy; 2026 The Mud Lounge. Built with tranquility.</p>
+            <div class="footer-legal-links">
+                <a href="#privacy">Privacy</a> &middot; <a href="#terms">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
