@@ -60,14 +60,24 @@ mud-lounge-ui/
 ├── style.css           # Styling rules, design variables & responsiveness
 ├── app.js              # Interactivity, filters, observers & API handling
 └── assets/             # Media, images, and hero video files
+```
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
-1. Clone the repository:
-git clone [https://github.com/maheen2307/mud-lounge-ui.git](https://github.com/maheen2307/mud-lounge-ui.git)
-cd mud-lounge-ui
-2. Run locally:
-​Open index.html directly in any web browser, or
-​Launch using VS Code Live Server (http://127.0.0.1:5500).
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Maheen2307/Mud-Lounge-UI.git](https://github.com/Maheen2307/Mud-Lounge-UI.git)
+   cd Mud-Lounge-UI
+   ```
+
+2. **Run locally:**
+   * Open `index.html` directly in any web browser, or
+   * Launch using VS Code **Live Server** (`http://127.0.0.1:5500`).
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
