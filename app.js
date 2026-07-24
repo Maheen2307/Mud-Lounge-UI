@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
         bookingForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            // Form values collect karna
+            // Collect form values
             const bookingData = {
                 fullName: document.getElementById("fullName")?.value || "",
                 emailAddress: document.getElementById("emailAddress")?.value || "",
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             try {
-                // Express Backend API ko data bhejna
+                // Send data to Express Backend API
                 const response = await fetch("http://localhost:5000/api/bookings", {
                     method: "POST",
                     headers: {
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } catch (error) {
                 console.error("Server Connection Error:", error);
-                alert("⚠️ Backend server se connect nahi ho saka! Make sure terminal mein 'node server.js' running hai.");
+                alert("⚠️ Could not connect to the backend server! Make sure 'node server.js' is running in the terminal.");
             }
         });
     }
