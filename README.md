@@ -1,4 +1,4 @@
-# The Mud Lounge — Premium Pottery Studio UI
+# 🏺 The Mud Lounge — Premium Pottery Studio UI
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
@@ -12,7 +12,13 @@ A responsive, modern frontend web application designed for a premier pottery stu
 
 ## 📌 Overview
 
-**The Mud Lounge** is a modern web application built with clean DOM manipulation, custom scroll animations, interactive UI components, mobile-first responsive layouts, and asynchronous form handling.
+**The Mud Lounge** is a modern web application built with clean DOM manipulation, custom scroll animations, interactive UI components, mobile-first responsive layouts, and asynchronous form handling integrated directly with a live backend API.
+
+---
+
+## 🌐 Live Backend Integration
+* **Live API Endpoint:** [https://mud-lounge-backend.vercel.app/api/bookings](https://mud-lounge-backend.vercel.app/api/bookings)
+* **Backend Repository:** [Mud-Lounge-Backend](https://github.com/Maheen2307/Mud-Lounge-Backend)
 
 ---
 
@@ -23,7 +29,7 @@ A responsive, modern frontend web application designed for a premier pottery stu
 * **Automated Product Showcase:** Self-cycling 3-second image slideshow built with JavaScript intervals.
 * **Interactive Accordion FAQ:** Pure CSS/JS expandable toggles for space-efficient Q&A.
 * **Continuous Marquee Review Strip:** Infinite CSS keyframe animation displaying community feedback.
-* **Asynchronous Booking Form:** Validates user inputs and sends async `POST` payloads via JavaScript `fetch()`.
+* **Live Booking Form Integration:** Asynchronous `fetch()` POST requests to the live Vercel backend with full syntactic and semantic validation.
 * **Mobile Snap Scroll:** Responsive CSS snap-scrolling layout for seamless swipe navigation on mobile devices.
 
 ---
@@ -38,7 +44,7 @@ A responsive, modern frontend web application designed for a premier pottery stu
 * **Showcase:** Interactive product showcase featuring automated image rotators.
 * **FAQs:** Interactive click-to-expand accordion UI.
 * **Reviews:** Infinite auto-scrolling testimonial strip.
-* **Booking Form:** Reservation form configured for backend API connection.
+* **Booking Form:** Reservation form configured and live-connected to the Express backend API.
 * **Footer:** Studio schedule, location, contact, and legal links.
 
 ---
@@ -51,6 +57,7 @@ A responsive, modern frontend web application designed for a premier pottery stu
 | **CSS3** | Flexbox, Grid, Custom Variables, Snap Scrolling, Keyframes |
 | **JavaScript (ES6+)** | DOM manipulation, `IntersectionObserver`, `fetch` API |
 | **Google Fonts** | Montserrat & Plus Jakarta Sans |
+| **Deployment** | GitHub Pages (Frontend) & Vercel (Backend API) |
 
 ---
 
@@ -60,7 +67,7 @@ A responsive, modern frontend web application designed for a premier pottery stu
 mud-lounge-ui/
 ├── index.html          # Semantic HTML markup
 ├── style.css           # Styling rules, design variables & responsiveness
-├── app.js              # Interactivity, filters, observers & API handling
+├── app.js              # Interactivity, filters, observers & Live API handling
 └── assets/             # Media, images, and hero video files
 ```
 
